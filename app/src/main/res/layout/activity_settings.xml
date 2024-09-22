@@ -5,6 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/text_name2"
+        android:layout_width="409dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="202dp"
+        android:text="  2nd Counter Name:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="1dp" />
+
+    <TextView
+        android:id="@+id/text_name3"
+        android:layout_width="409dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="307dp"
+        android:text="  3rd Counter Name:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <EditText
+        android:id="@+id/name_counter3"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="355dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name goes here"
+        android:textStyle="italic"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -12,5 +46,80 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/text_name1"
+        android:layout_width="409dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="97dp"
+        android:text="  1st Counter Name: "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <EditText
+        android:id="@+id/name_counter1"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="145dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name goes here"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/text_name1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_name1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/name_counter2"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Name goes here"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/text_name2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_name2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/max_count"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="459dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Max count goes here"
+        android:textStyle="italic"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/text_max"
+        android:layout_width="409dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="411dp"
+        android:text="  Maximum Count:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="409dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="571dp"
+        android:layout_marginBottom="112dp"
+        android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
