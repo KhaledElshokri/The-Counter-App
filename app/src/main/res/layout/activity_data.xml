@@ -32,7 +32,7 @@
         android:layout_height="38dp"
         android:layout_marginTop="20dp"
         android:text="Event name: # events"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_data"
         tools:layout_editor_absoluteX="1dp" />
@@ -42,7 +42,7 @@
         android:layout_width="405dp"
         android:layout_height="38dp"
         android:text="Event name: # events"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/view_data_count1"
         tools:layout_editor_absoluteX="1dp" />
@@ -52,7 +52,7 @@
         android:layout_width="405dp"
         android:layout_height="38dp"
         android:text="Event name: # events"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/view_data_count2"
         tools:layout_editor_absoluteX="1dp" />
@@ -62,7 +62,7 @@
         android:layout_width="405dp"
         android:layout_height="38dp"
         android:text="# of events"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/view_data_count3"
         tools:layout_editor_absoluteX="0dp" />

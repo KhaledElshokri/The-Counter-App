@@ -3,6 +3,9 @@ package com.example.helloworld;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SharedPreferenceHelper {
 
 
@@ -53,7 +56,8 @@ public class SharedPreferenceHelper {
     {
         return  sharedPreferences.getInt("totalCount", 0);
     }
-    public void saveButtonOneCount(int count1){
+    public void saveButtonOneCount(int count1)
+    {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("buttonOne",count1 );
         editor.commit();
@@ -85,4 +89,33 @@ public class SharedPreferenceHelper {
     {
         return sharedPreferences.getInt("buttonThree",0);
     }
+
+    public void saveProfileNames(List<String> names) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Save each name with a unique key
+        for (int i = 0; i < names.size(); i++) {
+            editor.putString("profileName_" + i, names.get(i));
+        }
+
+        // Save the size of the list
+        editor.putInt("profileNames_size", names.size());
+        editor.apply();  // Use apply() for async saving
+    }
+
+    public List<String> getProfileNames() {
+        int size = sharedPreferences.getInt("profileNames_size", 0);
+        List<String> names = new ArrayList<>();
+
+        // Retrieve each name using its key
+        for (int i = 0; i < size; i++) {
+            String name = sharedPreferences.getString("profileName_" + i, null);
+            if (name != null) {
+                names.add(name);
+            }
+        }
+        return names;
+    }
+
+
 }

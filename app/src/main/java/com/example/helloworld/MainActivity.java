@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected Button button_eventC;
     protected Button button_showCounts;
     protected TextView totalCount;
+    protected List<String> eventTrigList;
 
     // Shared Preference to keep track of changes
     protected SharedPreferenceHelper sharedPreferenceHelper;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         sharedPreferenceHelper = new SharedPreferenceHelper(MainActivity.this);
+        eventTrigList = new ArrayList<>();
 
         // Find Buttons/TextViews
         button_settings = findViewById(R.id.button_settings);
@@ -77,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count1++;
+                eventTrigList.add(sharedPreferenceHelper.getProfileName1());
                 updateSharedPref();
             }
         });
@@ -86,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count2++;
+                eventTrigList.add(sharedPreferenceHelper.getProfileName2());
                 updateSharedPref();
             }
         });
@@ -95,10 +102,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 count3++;
+                eventTrigList.add(sharedPreferenceHelper.getProfileName3());
                 updateSharedPref();
             }
         });
-
     }
 
     @Override
@@ -127,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferenceHelper.saveButtonOneCount(count1);
         sharedPreferenceHelper.saveButtonTwoCount(count2);
         sharedPreferenceHelper.saveButtonThreeCount(count3);
+
+        // Update the list the holds the button clicks logs
+        sharedPreferenceHelper.saveProfileNames(eventTrigList);
 
         countertotal = count1 + count2 + count3;
         totalCount.setText("Total Count: " + String.valueOf(countertotal));
