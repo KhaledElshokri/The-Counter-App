@@ -29,12 +29,6 @@ public class MainActivity extends AppCompatActivity {
     // Shared Preference to keep track of changes
     protected SharedPreferenceHelper sharedPreferenceHelper;
 
-    // Counters
-    int count1;
-    int count2;
-    int count3;
-    int countertotal;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         totalCount = findViewById(R.id.view_counts);
 
         // Init totalcount
-        totalCount.setText("Total Count: " + String.valueOf(countertotal));
+        totalCount.setText("Total Count: " + String.valueOf(sharedPreferenceHelper.getTotalCount()));
 
         // Set an OnClickListener to handle Settings button click
         button_settings.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +75,11 @@ public class MainActivity extends AppCompatActivity {
         button_eventA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count1++;
                 eventTrigList.add(sharedPreferenceHelper.getProfileName1());
+                // Update the list the holds the button clicks logs
+                sharedPreferenceHelper.saveProfileNames(eventTrigList);
+                // Update button
+                sharedPreferenceHelper.saveButtonOneCount(sharedPreferenceHelper.getButtonOneCount() + 1);
                 updateSharedPref();
             }
         });
@@ -91,8 +88,11 @@ public class MainActivity extends AppCompatActivity {
         button_eventB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count2++;
                 eventTrigList.add(sharedPreferenceHelper.getProfileName2());
+                // Update the list the holds the button clicks logs
+                sharedPreferenceHelper.saveProfileNames(eventTrigList);
+                // Update button
+                sharedPreferenceHelper.saveButtonTwoCount(sharedPreferenceHelper.getButtonTwoCount() + 1);
                 updateSharedPref();
             }
         });
@@ -101,8 +101,11 @@ public class MainActivity extends AppCompatActivity {
         button_eventC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                count3++;
                 eventTrigList.add(sharedPreferenceHelper.getProfileName3());
+                // Update the list the holds the button clicks logs
+                sharedPreferenceHelper.saveProfileNames(eventTrigList);
+                // Update Button
+                sharedPreferenceHelper.saveButtonThreeCount(sharedPreferenceHelper.getButtonThreeCount() + 1);
                 updateSharedPref();
             }
         });
@@ -127,22 +130,21 @@ public class MainActivity extends AppCompatActivity {
             button_eventC.setText(name3);
         }
 
+        if (sharedPreferenceHelper.getTotalCount() < sharedPreferenceHelper.getMaxCount()){
+            button_eventA.setEnabled(true);
+            button_eventB.setEnabled(true);
+            button_eventC.setEnabled(true);
+        }
+
     }
     // This method updates the content of the shared preference to sync
     private void updateSharedPref()
     {
-        sharedPreferenceHelper.saveButtonOneCount(count1);
-        sharedPreferenceHelper.saveButtonTwoCount(count2);
-        sharedPreferenceHelper.saveButtonThreeCount(count3);
-
-        // Update the list the holds the button clicks logs
-        sharedPreferenceHelper.saveProfileNames(eventTrigList);
-
-        countertotal = count1 + count2 + count3;
-        totalCount.setText("Total Count: " + String.valueOf(countertotal));
+        sharedPreferenceHelper.saveTotalCount();
+        totalCount.setText("Total Count: " + String.valueOf(sharedPreferenceHelper.getTotalCount()));
 
         //The three buttons are disabled after reaching to the maximum number of counts set by the user. A message is also shown.
-        if (countertotal == sharedPreferenceHelper.getTotalCount()){
+        if (sharedPreferenceHelper.getTotalCount() >= sharedPreferenceHelper.getMaxCount()){
             button_eventA.setEnabled(false);
             button_eventB.setEnabled(false);
             button_eventC.setEnabled(false);

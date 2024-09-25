@@ -1,6 +1,5 @@
 package com.example.helloworld;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
                 counterName1.setEnabled(false);
                 counterName2.setEnabled(false);
                 counterName3.setEnabled(false);
-                maxCount.setHint(String.valueOf(settingsSetUp.getTotalCount()));
+                maxCount.setHint(String.valueOf(settingsSetUp.getMaxCount()));
                 maxCount.setEnabled(false);
                 button_save.setVisibility(View.GONE);
 
@@ -126,14 +126,22 @@ public class SettingsActivity extends AppCompatActivity {
             settingsSetUp.setName1(name1);
             settingsSetUp.setName2(name2);
             settingsSetUp.setName3(name3);
-            settingsSetUp.setTotalCount(number);
+            settingsSetUp.setMaxCount(number);
 
             //With the sharedPreferenceHelper class, it saves and the names and the maximum number of counts from the Settings class
             settingsSPH = new SharedPreferenceHelper(getApplicationContext());
             settingsSPH.saveProfileName1(settingsSetUp.getName1());
             settingsSPH.saveProfileName2(settingsSetUp.getName2());
             settingsSPH.saveProfileName3(settingsSetUp.getName3());
-            settingsSPH.saveTotalCount(settingsSetUp.getTotalCount());
+            settingsSPH.saveMaxCount(settingsSetUp.getMaxCount());
+
+
+            // Resetting counts
+            settingsSPH.saveButtonOneCount(0);
+            settingsSPH.saveButtonTwoCount(0);
+            settingsSPH.saveButtonThreeCount(0);
+            settingsSPH.resetProfileNames();
+            settingsSPH.saveTotalCount();
 
             //Once the user presses the save button, it shows this message that the content is saved.
             Toast.makeText(this,"The names of each event and the maximum total count are now saved!", Toast.LENGTH_SHORT).show();

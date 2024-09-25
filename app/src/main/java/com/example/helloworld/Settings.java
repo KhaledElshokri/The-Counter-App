@@ -7,14 +7,14 @@ public class Settings {
     private String name1;
     private String name2;
     private String name3;
-    private  int totalCount;
+    private  int maxCount;
 
     //Allows to initiliaze the settings class.
     public Settings() {
         this.name1 = "";
         this.name2 ="";
         this.name3 = "";
-        this.totalCount = 0;
+        this.maxCount = 0;
     }
 
     // The following code is the get and set functionalities for the three names and the total count.
@@ -42,7 +42,7 @@ public class Settings {
         this.name3 = name3;
     }
 
-    public int getTotalCount() {return totalCount;}
+    public int getMaxCount() {return maxCount;}
 
-    public void setTotalCount(int totalCount) {this.totalCount = totalCount;}
+    public void setMaxCount(int maxCount) {this.maxCount = maxCount;}
 }

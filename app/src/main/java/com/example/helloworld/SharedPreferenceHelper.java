@@ -46,8 +46,20 @@ public class SharedPreferenceHelper {
     {
         return sharedPreferences.getString("profileName3", null);
     }
-    public void saveTotalCount(int count)
+    public void saveMaxCount(int count)
     {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt("maxCount",count );
+        editor.commit();
+    }
+    public int getMaxCount()
+    {
+        return  sharedPreferences.getInt("maxCount", 0);
+    }
+
+    public void saveTotalCount()
+    {
+        int count = this.getButtonOneCount() + this.getButtonTwoCount() + this.getButtonThreeCount();
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt("totalCount",count );
         editor.commit();
@@ -56,6 +68,7 @@ public class SharedPreferenceHelper {
     {
         return  sharedPreferences.getInt("totalCount", 0);
     }
+
     public void saveButtonOneCount(int count1)
     {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -117,5 +130,22 @@ public class SharedPreferenceHelper {
         return names;
     }
 
+    public void resetProfileNames() {
+        // Begin the edit operation
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        // Retrieve the size of the list to remove all profileName entries
+        int size = sharedPreferences.getInt("profileNames_size", 0);
+
+        // Remove each profile name by key
+        for (int i = 0; i < size; i++) {
+            editor.remove("profileName_" + i); // Remove profileName at index i
+        }
+
+        // Reset the size to 0 since the list is being cleared
+        editor.putInt("profileNames_size", 0);
+
+        // Apply the changes
+        editor.apply();
+    }
 }

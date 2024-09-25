@@ -77,25 +77,7 @@ public class DataActivity extends AppCompatActivity {
 
             // Create a new TextView for the event string
             TextView textView = new TextView(this);
-            if(toggleFlag == 1)
-            {
-                if (event.equals(DataSPH.getProfileName1()))
-                {
-                    textView.setText("Counter 1: ");
-                }
-                else if (event.equals(DataSPH.getProfileName2()))
-                {
-                    textView.setText("Counter 2: ");
-                }
-                else if (event.equals(DataSPH.getProfileName3()))
-                {
-                    textView.setText("Counter 3: ");
-                }
-            }
-            else
-            {
-                textView.setText(event);
-            }
+            textView.setText(event);
 
             textView.setPadding(16, 16, 16, 16);  // Set padding for better readability
 
@@ -159,6 +141,31 @@ public class DataActivity extends AppCompatActivity {
                     counterName3.setText("Counter 3: " + String.valueOf(DataSPH.getButtonThreeCount()) + " events");
                 }
             }
+
+            // Loop through all rows of the TableLayout
+            for (int i = 0; i < eventTable.getChildCount(); i++) {
+                // Get the current TableRow
+                TableRow row = (TableRow) eventTable.getChildAt(i);
+
+                // Check if the TableRow contains a TextView
+                if (row.getChildCount() > 0) {
+                    TextView textView = (TextView) row.getChildAt(0);
+
+                    String name = (String) textView.getText();
+                    if (name.equals(DataSPH.getProfileName1()))
+                    {
+                        textView.setText("Counter 1");
+                    }
+                    else if (name.equals(DataSPH.getProfileName2()))
+                    {
+                        textView.setText("Counter 2");
+                    }
+                    else
+                    {
+                        textView.setText("Counter 3");
+                    }
+                }
+            }
         }
         else
         {
@@ -179,6 +186,32 @@ public class DataActivity extends AppCompatActivity {
                     counterName3.setText(DataSPH.getProfileName3() + ": " + String.valueOf(DataSPH.getButtonThreeCount()) + " events");
                 }
             }
+
+            // Loop through all rows of the TableLayout
+            for (int i = 0; i < eventTable.getChildCount(); i++) {
+                // Get the current TableRow
+                TableRow row = (TableRow) eventTable.getChildAt(i);
+
+                // Check if the TableRow contains a TextView
+                if (row.getChildCount() > 0) {
+                    TextView textView = (TextView) row.getChildAt(0);
+
+                    String name = (String) textView.getText();
+                    if (name.equals("Counter 1"))
+                    {
+                        textView.setText(DataSPH.getProfileName1());
+                    }
+                    else if (name.equals("Counter 2"))
+                    {
+                        textView.setText(DataSPH.getProfileName2());
+                    }
+                    else
+                    {
+                        textView.setText(DataSPH.getProfileName3());
+                    }
+                }
+            }
+
         }
 
     }
