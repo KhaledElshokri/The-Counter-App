@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,8 +28,12 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);  // Points to the settings layout file
 
+        // Setting Up toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Setting Up SPH
+        settingsSPH = new SharedPreferenceHelper(getApplicationContext());
 
         // Enable the "Up" button
         if (getSupportActionBar() != null) {
@@ -44,6 +47,28 @@ public class SettingsActivity extends AppCompatActivity {
         counterName2 = findViewById(R.id.name_counter2);
         counterName3 = findViewById(R.id.name_counter3);
         maxCount = findViewById(R.id.max_count);
+
+        if (settingsSPH.getProfileName1() == null && settingsSPH.getProfileName2() == null && settingsSPH.getProfileName3() == null)
+        {
+            counterName1.setHint("Write Event name here");
+            counterName2.setHint("Write Event name here");
+            counterName3.setHint("Write Event name here");
+            maxCount.setHint("Write Event Max Count here");
+        }
+        else
+        {
+            counterName1.setText(settingsSPH.getProfileName1());
+            counterName2.setText(settingsSPH.getProfileName2());
+            counterName3.setText(settingsSPH.getProfileName3());
+            maxCount.setText(String.valueOf(settingsSPH.getMaxCount()));
+
+            counterName1.setEnabled(false);
+            counterName2.setEnabled(false);
+            counterName3.setEnabled(false);
+            maxCount.setEnabled(false);
+
+            button_save.setVisibility(View.GONE);
+        }
 
         // Set an OnClickListener to handle Settings button click
         button_save.setOnClickListener(new View.OnClickListener() {
@@ -129,7 +154,6 @@ public class SettingsActivity extends AppCompatActivity {
             settingsSetUp.setMaxCount(number);
 
             //With the sharedPreferenceHelper class, it saves and the names and the maximum number of counts from the Settings class
-            settingsSPH = new SharedPreferenceHelper(getApplicationContext());
             settingsSPH.saveProfileName1(settingsSetUp.getName1());
             settingsSPH.saveProfileName2(settingsSetUp.getName2());
             settingsSPH.saveProfileName3(settingsSetUp.getName3());
